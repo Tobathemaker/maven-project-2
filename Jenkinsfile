@@ -5,7 +5,7 @@ pipeline {
   }
   tools {
     maven 'localMaven'
-    jdk 'localJdk'
+    jdk 'JDK 21.0.4'
   }
   stages {
     stage('Build') {
