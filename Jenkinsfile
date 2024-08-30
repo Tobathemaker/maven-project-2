@@ -2,6 +2,7 @@ pipeline {
   agent any
   environment {
     WORKSPACE = "${env.WORKSPACE}"
+    SONARQUBE_TOKEN = credentials('sonarToken')
   }
   tools {
     maven 'localMaven'
@@ -22,8 +23,8 @@ pipeline {
     stage('SonarQube Scan') {
       steps {
         sh """mvn sonar:sonar \
-  -Dsonar.host.url=http://98.81.222.6:9000 \
-  -Dsonar.login=squ_165172fa5fc8944d7ea6b336bd0302d9960c84c2"""
+  -Dsonar.host.url=http://98.81.200.190:9000 \
+  -Dsonar.login=${SONARQUBE_TOKEN}"""
       }
     }
     stage('Upload to Artifactory') {
@@ -70,5 +71,3 @@ pipeline {
     }
   }
 }
-
-
